@@ -102,7 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\raylib\raylib\src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\raylib\raylib\src;$(ProjectDir)Source</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,8 +118,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\raylib\raylib\src;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\raylib\raylib\src;$(ProjectDir)Source</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +130,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Chr\Player.cpp" />
+    <ClCompile Include="Source\Drawable\PersonModel.cpp" />
+    <ClCompile Include="Source\Graphics\Draw3D.cpp" />
     <ClCompile Include="Source\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Chr\Chr.h" />
+    <ClInclude Include="Source\Chr\Player.h" />
+    <ClInclude Include="Source\Drawable\Drawable.h" />
+    <ClInclude Include="Source\Drawable\PersonModel.h" />
+    <ClInclude Include="Source\Graphics\Draw3D.h" />
+    <ClInclude Include="Source\Math\Capsule.h" />
+    <ClInclude Include="Source\Math\ColorOperation.h" />
+    <ClInclude Include="Source\Math\Sphere.h" />
+    <ClInclude Include="Source\Math\Vector3Operation.h" />
+    <ClInclude Include="Source\Object\Object.h" />
+    <ClInclude Include="Source\Pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,5 +10,27 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Drawable\PersonModel.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Draw3D.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Chr\Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Drawable\Drawable.h" />
+    <ClInclude Include="Source\Drawable\PersonModel.h" />
+    <ClInclude Include="Source\Math\Capsule.h" />
+    <ClInclude Include="Source\Graphics\Draw3D.h" />
+    <ClInclude Include="Source\Chr\Chr.h" />
+    <ClInclude Include="Source\Chr\Player.h" />
+    <ClInclude Include="Source\Object\Object.h" />
+    <ClInclude Include="Source\Pch.h" />
+    <ClInclude Include="Source\Math\ColorOperation.h" />
+    <ClInclude Include="Source\Math\Sphere.h" />
+    <ClInclude Include="Source\Math\Vector3Operation.h" />
   </ItemGroup>
 </Project>
