@@ -22,6 +22,9 @@
     <ClCompile Include="Source\Input\KeyboardMouseInput.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Drawable\SquareMap.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Drawable\Drawable.h" />
@@ -37,5 +40,9 @@
     <ClInclude Include="Source\Math\Vector3Operation.h" />
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Input\KeyboardMouseInput.h" />
+    <ClInclude Include="Source\Drawable\SquareMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Math\Line.h" />
   </ItemGroup>
 </Project>

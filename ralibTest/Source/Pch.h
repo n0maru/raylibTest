@@ -9,5 +9,6 @@
 #include "Math/Sphere.h"
 #include "Math/ColorOperation.h"
 #include "Math/Vector3Operation.h"
+#include "Math/Line.h"
 
 #include "Object/Object.h"

@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Chr\Player.cpp" />
     <ClCompile Include="Source\Drawable\PersonModel.cpp" />
+    <ClCompile Include="Source\Drawable\SquareMap.cpp" />
     <ClCompile Include="Source\Graphics\Draw3D.cpp" />
     <ClCompile Include="Source\Input\KeyboardMouseInput.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Source\Chr\Player.h" />
     <ClInclude Include="Source\Drawable\Drawable.h" />
     <ClInclude Include="Source\Drawable\PersonModel.h" />
+    <ClInclude Include="Source\Drawable\SquareMap.h" />
     <ClInclude Include="Source\Graphics\Draw3D.h" />
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Input\KeyboardMouseInput.h" />
@@ -150,6 +152,9 @@
     <ClInclude Include="Source\Math\Vector3Operation.h" />
     <ClInclude Include="Source\Object\Object.h" />
     <ClInclude Include="Source\Pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Math\Line.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
