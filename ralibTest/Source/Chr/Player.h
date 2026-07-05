@@ -2,6 +2,9 @@
 #include "Chr.h"
 #include "Drawable/PersonModel.h"
 
+/// <summary>
+/// プレイヤー
+/// </summary>
 class Player : public Chr
 {
 public:
@@ -9,6 +12,7 @@ public:
 		: Chr()
 		, m_personModel()
 	{
+		Init();
 	}
 
 	void
@@ -16,6 +20,11 @@ public:
 
 	virtual void
 		Draw() const override;
+
+public:
+	void Move(Vector3 translation);
+
+	void Rotate(Vector3 rotation);
 
 private:
 	PersonModel m_personModel;
