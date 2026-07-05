@@ -12,7 +12,7 @@ public:
 	/// デフォルトの正面ベクトル
 	/// </summary>
 	static Vector3
-		Front()
+		WorldFront()
 	{
 		return Vector3{
 			0.0f, 0.0f, 1.0f
