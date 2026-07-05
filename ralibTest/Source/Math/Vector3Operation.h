@@ -1,6 +1,10 @@
 ﻿#pragma once
 #include "Pch.h"
 
+/// <summary>
+/// 3次元ベクトルの関数・定数群
+/// エイリアス：Vec3Op
+/// </summary>
 class Vector3Operation
 {
 public:

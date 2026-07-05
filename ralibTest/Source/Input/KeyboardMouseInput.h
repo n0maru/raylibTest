@@ -8,6 +8,9 @@
 class KeyboardMouseInput final : public Input
 {
 public:
+	/// <summary>
+	/// デフォルトコンストラクタ
+	/// </summary>
 	KeyboardMouseInput()
 		: Input()
 	{
