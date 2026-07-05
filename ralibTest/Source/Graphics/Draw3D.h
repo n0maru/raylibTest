@@ -3,6 +3,7 @@
 struct Color;
 struct CAPSULE;
 struct SPHERE;
+struct LINE;
 
 /// <summary>
 /// 描画関数群
@@ -25,4 +26,12 @@ public:
 	/// <param name="color">描画に使用する色を表す const Color&。</param>
 	static void
 		DrawSphere(const SPHERE& sphere, const Color& color);
+
+	/// <summary>
+	/// 線分の描画
+	/// </summary>
+	/// <param name="line">描画する線を表すLINE型のオブジェクト。</param>
+	/// <param name="color">線を描く際に使用する色を表すColor型の値。</param>
+	static void
+		DrawLine(const LINE& line, const Color& color);
 };

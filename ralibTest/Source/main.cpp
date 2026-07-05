@@ -1,6 +1,7 @@
 ﻿#include <raylib.h>
 #include "Chr/Player.h"
 #include "Input/KeyboardMouseInput.h"
+#include "Drawable/SquareMap.h"
 
 int main(void)
 {
@@ -25,13 +26,16 @@ int main(void)
 	// プレイヤーの設定
 	Player player;
 
+	// マップの設定
+	SquareMap map;
+
 	// 入力
 	Input* input = new KeyboardMouseInput();
 
 	while (!WindowShouldClose())
 	{
 		const float dt = ::GetFrameTime();
-		
+
 		// 入力
 		{
 			input->Update(dt);
@@ -60,6 +64,7 @@ int main(void)
 			BeginMode3D(camera);
 
 			player.Draw();
+			map.Draw();
 
 			EndMode3D();
 			EndDrawing();
