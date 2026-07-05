@@ -2,6 +2,7 @@
 #include "Chr/Player.h"
 #include "Input/KeyboardMouseInput.h"
 #include "Drawable/SquareMap.h"
+#include "Camera/ChrFollowCamera.h"
 
 int main(void)
 {
@@ -13,18 +14,12 @@ int main(void)
 		SetTargetFPS(60);
 	}
 
-	// カメラの設定
-	Camera camera = { 0 };
-	{
-		camera.position = Vector3{ 0.0f, 5.0f, 5.0f };
-		camera.target = Vector3{ 0.0f, 0.0f, 0.0f };
-		camera.up = Vector3{ 0.0f, 1.0f, 0.0f };
-		camera.fovy = 45.0f;
-		camera.projection = CAMERA_PERSPECTIVE;
-	}
-
 	// プレイヤーの設定
 	Player player;
+
+	// カメラの設定
+	ChrFollowCamera camera;
+	camera.SetFollowee(&player);
 
 	// マップの設定
 	SquareMap map;
@@ -55,13 +50,16 @@ int main(void)
 			// todo: 値の範囲が分からない
 			const float yaw = input->GetRotateHorizontal() / 50.0f * PI;
 			player.Rotate(Vector3{ 0.0f, yaw, 0.0f });
+
+			// カメラの更新
+			camera.Update(dt);
 		}
 
 		// 描画
 		{
 			BeginDrawing();
 			ClearBackground(RAYWHITE);
-			BeginMode3D(camera);
+			BeginMode3D(camera.GetCamera());
 
 			player.Draw();
 			map.Draw();

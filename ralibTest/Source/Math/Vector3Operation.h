@@ -18,5 +18,13 @@ public:
 			0.0f, 0.0f, 1.0f
 		};
 	}
+
+	static Vector3
+		WorldUp()
+	{
+		return Vector3{
+			0.0f, 1.0f, 0.0f
+		};
+	}
 };
 using Vec3Op = Vector3Operation;
