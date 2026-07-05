@@ -16,7 +16,7 @@ struct OBJECT
 	/// </summary>
 	OBJECT()
 		: pos{}
-		, dir{ Vec3Op::Front() }
+		, dir{ Vec3Op::WorldFront() }
 	{
 	}
 };

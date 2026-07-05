@@ -33,6 +33,7 @@ public:
 		: m_height(height)
 		, m_drawSplitNum(drawSplitNum)
 		, m_color(color)
+		, m_object(nullptr)
 	{
 	}
 

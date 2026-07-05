@@ -33,14 +33,15 @@ void SquareMap::Draw() const
 	}
 	{
 		Vector3 startPos = m_object.pos;
+		startPos.z += m_size.z;
 		Vector3 endPos = startPos;
-		endPos.z += m_size.z;
+		endPos.x += m_size.x;
 		Draw3D::DrawLine(LINE{ startPos, endPos }, ColorOp::Black);
 	}
 	{
 		Vector3 startPos = m_object.pos;
-		startPos.x += m_size.x;
 		Vector3 endPos = startPos;
+		endPos.z += m_size.z;
 		Draw3D::DrawLine(LINE{ startPos, endPos }, ColorOp::Black);
 	}
 	{
