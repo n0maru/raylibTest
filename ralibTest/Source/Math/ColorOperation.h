@@ -1,9 +1,13 @@
 ﻿#pragma once
 #include <raylib.h>
 
+/// <summary>
+/// 色関連の関数・定数群
+/// エイリアス：ColorOp
+/// </summary>
 class ColorOperation
 {
-public: // 色関連
+public:
 	/// <summary>
 	/// 肌色
 	/// </summary>

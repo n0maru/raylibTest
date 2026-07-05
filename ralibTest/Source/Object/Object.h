@@ -7,10 +7,13 @@
 /// </summary>
 struct OBJECT
 {
-	Vector3 pos;
-	Vector3 dir;
+	Vector3 pos; // 位置
+	Vector3 dir; // 向き
 
-
+	/// <summary>
+	/// デフォルトコンストラクタ
+	/// 原点でデフォルトの正面方向を向く。
+	/// </summary>
 	OBJECT()
 		: pos{}
 		, dir{ Vec3Op::Front() }
