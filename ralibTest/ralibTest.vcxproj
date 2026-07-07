@@ -137,6 +137,8 @@
     <ClCompile Include="Source\Graphics\Draw3D.cpp" />
     <ClCompile Include="Source\Input\KeyboardMouseInput.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Physics\PhysicsCalculator.cpp" />
+    <ClCompile Include="Source\Physics\PhysicsWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera\ChrFollowCamera.h" />
@@ -154,6 +156,9 @@
     <ClInclude Include="Source\Math\Vector3Operation.h" />
     <ClInclude Include="Source\Object\Object.h" />
     <ClInclude Include="Source\Pch.h" />
+    <ClInclude Include="Source\Physics\PhysicsBody.h" />
+    <ClInclude Include="Source\Physics\PhysicsCalculator.h" />
+    <ClInclude Include="Source\Physics\PhysicsWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Math\Line.h" />

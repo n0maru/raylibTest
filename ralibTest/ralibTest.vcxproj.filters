@@ -28,6 +28,12 @@
     <ClCompile Include="Source\Camera\ChrFollowCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Physics\PhysicsWorld.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\PhysicsCalculator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Drawable\Drawable.h" />
@@ -45,6 +51,9 @@
     <ClInclude Include="Source\Input\KeyboardMouseInput.h" />
     <ClInclude Include="Source\Drawable\SquareMap.h" />
     <ClInclude Include="Source\Camera\ChrFollowCamera.h" />
+    <ClInclude Include="Source\Physics\PhysicsCalculator.h" />
+    <ClInclude Include="Source\Physics\PhysicsWorld.h" />
+    <ClInclude Include="Source\Physics\PhysicsBody.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Math\Line.h" />
