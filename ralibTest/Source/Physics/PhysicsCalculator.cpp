@@ -11,7 +11,7 @@ void PhysicsCalculator::Move(PHYSICS_BODY& body, const PhysicsWorld::TRAIT& worl
 	sumAcceleration += body.acceleration;
 
 	// 加速度を元に速度を更新
-	body.velocity += sumAcceleration;
+	body.velocity += sumAcceleration * dt;
 
 	// 速度を元に位置を更新
 	const Vector3 prevPos = body.pos;
