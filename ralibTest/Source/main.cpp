@@ -14,6 +14,10 @@ int main(void)
 		InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 		SetTargetFPS(60);
 	}
+	// ログ関連の設定
+	{
+		::SetTraceLogLevel(LOG_ALL);
+	}
 
 	// ワールド
 	PhysicsWorld::TRAIT worldTrait;
