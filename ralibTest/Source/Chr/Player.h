@@ -68,7 +68,8 @@ public:
 	}
 public:
 	/// <summary>
-	/// 水平移動要求
+	/// 水平移動要求。
+	/// 複数回要求された場合、上書きされる。
 	/// </summary>
 	/// <param name="direction">方向</param>
 	void RequestMoveXZ(Vector2 direction);
@@ -76,7 +77,6 @@ public:
 	/// <summary>
 	/// ジャンプ要求
 	/// </summary>
-	/// <param name="speed">速度</param>
 	void RequstJump();
 
 	// todo: request にする
@@ -88,6 +88,9 @@ public:
 	void Rotate(Vector3 rotation);
 
 private:
+	/// <summary>
+	/// 要求をリセットする。
+	/// </summary>
 	void
 		_ResetRequest();
 private:
