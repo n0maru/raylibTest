@@ -57,20 +57,6 @@ public:
 	}
 
 	static Vector3
-		Normalize(const Vector3& src)
-	{
-		const float length = Length(src);
-		if (length > 0.0f)
-		{
-			return src / length;
-		}
-		else
-		{
-			return src;
-		}
-	}
-
-	static Vector3
 		XZ(const Vector3& src)
 	{
 		return Vector3{

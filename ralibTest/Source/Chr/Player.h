@@ -19,6 +19,9 @@ public:
 		: Chr()
 		, m_personModel()
 		, m_physBody()
+		, m_moveVelocityXZ(0.0f)
+		, m_requestMoveDirXZ(Vec2Op::Zero())
+		, m_isRequestedJump(false)
 	{
 		Init();
 	}
@@ -36,14 +39,21 @@ public:
 		Draw() const override;
 
 	/// <summary>
-	/// 更新
+	/// 物理世界更新前の更新処理
+	/// </summary>
+	/// <param name="dt"></param>
+	void
+		UpdatePrePysics(float dt);
+
+	/// <summary>
+	/// 物理世界更新後の更新
 	/// </summary>
 	/// <param name="dt"></param>
 	/// <remarks>
 	/// 事前に物理世界の更新が終わっている必要がある（＝m_physBody が更新済みであること）
 	/// </remarks>
 	virtual void
-		Update(float dt) override;
+		UpdatePostPhysics(float dt);
 
 	PHYSICS_BODY&
 		GetPhysicsBody()
@@ -58,11 +68,18 @@ public:
 	}
 public:
 	/// <summary>
-	/// 移動
+	/// 水平移動要求
 	/// </summary>
-	/// <param name="translation">速度[m/sec]</param>
-	void MoveRequest(Vector3 speed);
+	/// <param name="direction">方向</param>
+	void RequestMoveXZ(Vector2 direction);
 
+	/// <summary>
+	/// ジャンプ要求
+	/// </summary>
+	/// <param name="speed">速度</param>
+	void RequstJump();
+
+	// todo: request にする
 	/// <summary>
 	/// 回転
 	/// </summary>
@@ -70,6 +87,9 @@ public:
 	// todo: 回転量の単位が [rad/frame] になっているのを [rad/sec] にする
 	void Rotate(Vector3 rotation);
 
+private:
+	void
+		_ResetRequest();
 private:
 	/// <summary>
 	/// 人間型モデル
@@ -80,4 +100,19 @@ private:
 	/// 物理ボディ
 	/// </summary>
 	PHYSICS_BODY m_physBody;
+
+	/// <summary>
+	/// 移動速度[m/sec]
+	/// </summary>
+	Vector2 m_moveVelocityXZ;
+
+	/// <summary>
+	/// 要求移動方向
+	/// </summary>
+	Vector2 m_requestMoveDirXZ;
+
+	/// <summary>
+	/// ジャンプが要求されたか
+	/// </summary>
+	bool m_isRequestedJump;
 };

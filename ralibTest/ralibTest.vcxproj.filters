@@ -57,6 +57,7 @@
     <ClInclude Include="Source\Physics\PhysicsCalculator.h" />
     <ClInclude Include="Source\Physics\PhysicsWorld.h" />
     <ClInclude Include="Source\Physics\PhysicsBody.h" />
+    <ClInclude Include="Source\Math\Vector2Operation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Math\Line.h" />

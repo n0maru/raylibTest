@@ -45,18 +45,15 @@ int main(void)
 
 			// 入力の処理
 			{
-				// todo: 斜めに動くと√2倍速く動く
-				static constexpr float speed = 1.5f;
-				Vector3 translation{
-					speed * (static_cast<float>(input->DoesMoveFront()) - static_cast<float>(input->DoesMoveBack())),
-					0.0f,
-					speed * (static_cast<float>(input->DoesMoveRight()) - static_cast<float>(input->DoesMoveLeft())),
+				const Vector2 translation{
+					static_cast<float>(input->DoesMoveFront()) - static_cast<float>(input->DoesMoveBack()),
+					static_cast<float>(input->DoesMoveRight()) - static_cast<float>(input->DoesMoveLeft()),
 				};
-				player.MoveRequest(translation);
+				player.RequestMoveXZ(translation);
 
 				// 着地中のみジャンプ可能
-				if (player.GetPhysicsBody().pos.y <= 0.0f && input->DoesJump()) {
-					player.MoveRequest(Vector3{ 0.0f, 200.0f, 0.0f });
+				if (input->DoesJump()) {
+					player.RequstJump();
 				}
 
 				// todo: 値の範囲が分からない
@@ -68,11 +65,13 @@ int main(void)
 
 		// 更新
 		{
+			player.UpdatePrePysics(dt);
+
 			// 物理ワールド更新
 			world.Update(dt);
 
 			// プレイヤーの位置を更新
-			player.Update(dt);
+			player.UpdatePostPhysics(dt);
 
 			// カメラの更新
 			camera.Update(dt);
