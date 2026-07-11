@@ -13,6 +13,7 @@ struct PHYSICS_BODY
 	{
 		Vector3 gravityMagnification; // 重力の倍率
 		BoundingBox shape; // 形（posを 0 としたときの値）
+		float frictionCoeff; // 摩擦定数
 
 		/// <summary>
 		/// デフォルトコンストラクタ

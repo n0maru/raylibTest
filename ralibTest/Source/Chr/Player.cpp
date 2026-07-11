@@ -6,6 +6,7 @@ void Player::Init()
 	// 物理特性の設定
 	m_physBody.trait.gravityMagnification = Vector3{ 1.0f, 1.0f, 1.0f };
 	m_physBody.trait.shape = BoundingBox{ Vector3{-1.0f, 0.0f, -1.0f}, Vector3{1.0f, 1.75f, 1.0f} };
+	m_physBody.trait.frictionCoeff = 0.6f; // 適切な値か分からない（今は使われていない）
 
 	// 物理状態のリセット
 	m_physBody.acceleration = Vector3{ 0.0f, 0.0f, 0.0f };

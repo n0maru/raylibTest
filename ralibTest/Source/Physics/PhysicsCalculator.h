@@ -18,5 +18,15 @@ public:
 	/// <param name="dt">経過時間</param>
 	static void
 		Move(PHYSICS_BODY& body, const PhysicsWorld::TRAIT& worldTrait, float dt);
+
+private:
+	/// <summary>
+	/// 摩擦加速度を求める
+	/// </summary>
+	/// <param name="body">摩擦</param>
+	/// <param name="worldTrait">物理世界の特性</param>
+	/// <returns>摩擦加速度[m/(sec)^2]</returns>
+	static float
+		_CalcGetFrictionAcceleration(const PHYSICS_BODY& body, const PhysicsWorld::TRAIT& worldTrait);
 };
 using PhysicsCalc = PhysicsCalculator;
