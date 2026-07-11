@@ -3,6 +3,7 @@
 #include "Input/KeyboardMouseInput.h"
 #include "Drawable/SquareMap.h"
 #include "Camera/ChrFollowCamera.h"
+#include "Physics/PhysicsWorld.h"
 
 int main(void)
 {
@@ -13,9 +14,19 @@ int main(void)
 		InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 		SetTargetFPS(60);
 	}
+	// ログ関連の設定
+	{
+		::SetTraceLogLevel(LOG_ALL);
+	}
+
+	// ワールド
+	PhysicsWorld::TRAIT worldTrait;
+	worldTrait.gravity = Vector3{ 0.0f, -9.8f, 0.0f }; // 重力
+	PhysicsWorld world(worldTrait);
 
 	// プレイヤーの設定
 	Player player;
+	world.Register(&player.GetPhysicsBody()); // 物理世界に登録
 
 	// カメラの設定
 	ChrFollowCamera camera;
@@ -33,23 +44,38 @@ int main(void)
 
 		// 入力
 		{
+			// 入力を取得
 			input->Update(dt);
+
+			// 入力の処理
+			{
+				const Vector2 translation{
+					static_cast<float>(input->DoesMoveFront()) - static_cast<float>(input->DoesMoveBack()),
+					static_cast<float>(input->DoesMoveRight()) - static_cast<float>(input->DoesMoveLeft()),
+				};
+				player.RequestMoveXZ(translation);
+
+				// 着地中のみジャンプ可能
+				if (input->DoesJump()) {
+					player.RequstJump();
+				}
+
+				// todo: 値の範囲が分からない
+				const float yaw = input->GetRotateHorizontal() / 50.0f * PI;
+				player.Rotate(Vector3{ 0.0f, yaw, 0.0f });
+			}
 		}
+
 
 		// 更新
 		{
-			// todo: 斜めに動くと√2倍速く動く
-			static constexpr float speed = 0.2f;
-			Vector3 translation{
-				speed * (static_cast<float>(input->DoesMoveFront()) - static_cast<float>(input->DoesMoveBack())),
-				0.0f,
-				speed * (static_cast<float>(input->DoesMoveRight()) - static_cast<float>(input->DoesMoveLeft())),
-			};
-			player.Move(translation);
+			player.UpdatePrePysics(dt);
 
-			// todo: 値の範囲が分からない
-			const float yaw = input->GetRotateHorizontal() / 50.0f * PI;
-			player.Rotate(Vector3{ 0.0f, yaw, 0.0f });
+			// 物理ワールド更新
+			world.Update(dt);
+
+			// プレイヤーの位置を更新
+			player.UpdatePostPhysics(dt);
 
 			// カメラの更新
 			camera.Update(dt);

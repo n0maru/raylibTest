@@ -7,6 +7,7 @@ KeyboardMouseInput::Update(float dt)
 	m_doesMoveBack = ::IsKeyDown(KEY_S);
 	m_doesMoveLeft = ::IsKeyDown(KEY_A);
 	m_doesMoveRight = ::IsKeyDown(KEY_D);
+	m_doesJump = ::IsKeyDown(KEY_SPACE);
 	m_mouseDelta = ::GetMouseDelta();
 }
 

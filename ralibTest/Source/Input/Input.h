@@ -92,10 +92,20 @@ public: // 取得
 		return m_mouseDelta.y;
 	}
 
+	/// <summary>
+	/// ジャンプしたか
+	/// </summary>
+	/// <returns></returns>
+	virtual bool
+		DoesJump() const
+	{
+		return m_doesJump;
+	}
 protected:
 	bool m_doesMoveFront; // 前移動入力
 	bool m_doesMoveBack; // 後ろ移動入力
 	bool m_doesMoveRight; // 右方向入力
 	bool m_doesMoveLeft; // 左方向入力
+	bool m_doesJump; // ジャンプしたか
 	Vector2 m_mouseDelta; // 今フレームの移動量
 };

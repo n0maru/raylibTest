@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Drawable/Drawable.h"
 #include "Object/Object.h"
+#include "Physics/PhysicsBody.h"
 
 /// <summary>
 /// キャラクター
@@ -13,7 +14,6 @@ public:
 	{
 		return m_object.pos;
 	}
-
 protected:
 	/// <summary>
 	/// オブジェクト情報

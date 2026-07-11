@@ -8,6 +8,7 @@
 #include "Math/Capsule.h"
 #include "Math/Sphere.h"
 #include "Math/ColorOperation.h"
+#include "Math/Vector2Operation.h"
 #include "Math/Vector3Operation.h"
 #include "Math/Line.h"
 
