@@ -18,9 +18,7 @@ void PhysicsCalculator::Move(PHYSICS_BODY& body, const PhysicsWorld::TRAIT& worl
 	body.pos += body.velocity * dt; // dt[sec] 分だけ移動する
 
 	// 地面にめり込まないようにする
-	const float minY = body.trait.shape.min.y + body.pos.y; // 体の内最も低い位置
-	const float diffY = std::max(-minY, 0.0f); // 物体が地面にめり込まないために必要な上昇量
-	body.pos.y += diffY;
+	body.pos.y = std::max(body.pos.y, 0.0f);
 
 	// 移動量を元に速度を更新
 	body.velocity = (dt == 0.0f ? Vector3{ 0.0f, 0.0f, 0.0f } : (body.pos - prevPos) / dt);

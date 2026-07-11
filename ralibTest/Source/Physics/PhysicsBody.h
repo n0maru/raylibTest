@@ -27,7 +27,7 @@ struct PHYSICS_BODY
 
 	Vector3 acceleration; // 加速度
 	Vector3 velocity; // 速度
-	Vector3 pos; // 位置
+	Vector3 pos; // 位置（y=0のとき地面にいる）
 	TRAIT trait; // 特性
 
 	/// <summary>

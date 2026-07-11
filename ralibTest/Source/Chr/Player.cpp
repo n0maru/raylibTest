@@ -13,7 +13,7 @@ void Player::Init()
 	m_physBody.velocity = Vector3{ 0.0f, 0.0f, 0.0f };
 	m_physBody.pos = Vector3{ 0.0f, 0.0f, 0.0f };
 
-	m_personModel.SetObject(&m_object);
+	m_personModel.SetObject(&m_object); // m_object をモデルの描画位置として参照する
 	m_object.pos = m_physBody.pos;
 
 	// 向きの設定
