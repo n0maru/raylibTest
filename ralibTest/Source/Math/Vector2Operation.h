@@ -30,7 +30,14 @@ public:
 	static Vector2
 		OrthographicProjection(const Vector2& from, const Vector2& to)
 	{
-		return to * Dot(from, to) / LengthSq(to);
+		const float toLengthSq = LengthSq(to);
+		if (toLengthSq > 0.0f) {
+			return to * (Dot(from, to) / toLengthSq);
+		}
+		else {
+			// ゼロベクトルへの射影はゼロベクトルになるべき
+			return Zero();
+		}
 	}
 
 	static Vector2
