@@ -16,9 +16,7 @@ void Player::Init()
 
 	m_personModel.SetObject(&m_object); // m_object をモデルの描画位置として参照する
 	m_object.pos = m_physBody.pos;
-
-	// 向きの設定
-	m_object.dir = Vector3{ 1.0f, 0.0f, 0.0f };
+	m_object.dir = Vec3Op::WorldFront();
 
 	// 移動速度
 	m_moveVelocityXZ = Vec2Op::Zero();
@@ -71,6 +69,18 @@ void Player::UpdatePostPhysics(float dt)
 {
 	// 物理世界上の位置をキャラの位置として反映する
 	m_object.pos = m_physBody.pos;
+
+
+	// 描画用の向きを更新
+	{
+		// キャラの向きを体が移動中の方向に向ける
+		Vector3 dir = m_physBody.velocity;
+		if (dir == Vec3Op::Zero()) {
+			dir = m_object.dir; // ゼロベクトルなら前回の向きを利用する
+		}
+
+		SetDirection(dir);
+	}
 
 	// 要求関連をリセット
 	_ResetRequest();

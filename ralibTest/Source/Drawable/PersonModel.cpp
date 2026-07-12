@@ -16,7 +16,7 @@ void PersonModel::Draw() const
 	const float headRadius = m_height * headRate / 2.0f; // 頭の半径
 
 	// モデル空間 -> ワールド空間 変換行列
-	const Quaternion rotation = ::QuaternionFromVector3ToVector3(Vec3Op::WorldFront(), m_object->dir);
+	const Quaternion rotation = ::QuaternionFromVector3ToVector3(Vec3Op::WorldFront(), Vec3Op::XZ(m_object->dir)); // 向きの平面成分だけを使う
 	const Matrix modelToWorldMtx = ::MatrixCompose(m_object->pos, rotation, Vector3{ 1.0f, 1.0f, 1.0f });
 
 	// 頭
@@ -55,11 +55,7 @@ void PersonModel::Draw() const
 			m_height - headRadius, // 頭の中心から生えている
 			0.0f,
 		};
-		const Vector3 endPos{
-			0.0f,
-			m_height - headRadius, // 頭の中心から生えている
-			headRadius * 2.0f
-		};
+		const Vector3 endPos = startPos + Vec3Op::WorldFront() * headRadius * 2.0f;
 		const CAPSULE nose{ startPos * modelToWorldMtx, endPos * modelToWorldMtx, noseRadius };
 		Draw3D::DrawCapsule(nose, m_drawSplitNum, m_color);// 描画
 	}
