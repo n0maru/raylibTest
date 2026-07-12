@@ -10,6 +10,8 @@ ChrFollowCamera::Init()
 	m_camera.fovy = 90.0f;// 視野角[deg]
 	m_camera.projection = CAMERA_PERSPECTIVE; // 透視投影
 
+	m_camRot = Vec2Op::Zero();
+
 	_ResetRequest();
 }
 
@@ -26,7 +28,9 @@ ChrFollowCamera::Update(float dt)
 	static constexpr float maxPitch = CrtOp::DegToRad(70.0f);
 	m_camRot.x = std::clamp(m_camRot.x, -maxPitch, maxPitch);
 
-	const Vector3 chrRelativePos = Vec3Op::WorldFront() * 2.0f * ::MatrixRotateXYZ(Vector3{ m_camRot.x, m_camRot.y, 0.0f }); // 相対位置
+	// ::TraceLog(LOG_DEBUG, "m_camRot: (%.2f,%.2f)", m_camRot.x, m_camRot.y);
+
+	const Vector3 chrRelativePos = Vec3Op::WorldFront() * 2.0f * ::MatrixRotateZYX(Vector3{ m_camRot.x, m_camRot.y, 0.0f }); // 相対位置
 
 	const Vector3 followeePos = m_followee->GetPos();
 	m_camera.target = followeePos + Vector3{ 0.0f, 1.7f, 0.0f }; // 注視点
