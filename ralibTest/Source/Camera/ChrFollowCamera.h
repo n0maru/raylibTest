@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Pch.h"
+#include <raylib.h>
 
 class Chr;
 
@@ -15,6 +15,9 @@ public:
 	ChrFollowCamera()
 		: m_camera{}
 		, m_followee(nullptr)
+		, m_camRot(Vec2Op::Zero())
+
+		, m_requestedRotation(Vec2Op::Zero())
 	{
 		Init();
 	}
@@ -52,7 +55,23 @@ public:
 	void
 		Update(float dt);
 
+
+public: // 要求
+	/// <summary>
+	/// カメラの回転を要求。
+	/// 複数回要求されたら回転量を加算する
+	/// </summary>
+	/// <param name="rotation">回転量[rad]</param>
+	void
+		RequestRotate(Vector2 rotation);
+
+private:
+	void
+		_ResetRequest();
 public:
 	Camera m_camera;
 	const Chr* m_followee; // ついていくキャラ
+	Vector2 m_camRot; // カメラ向き[rad]
+
+	Vector2 m_requestedRotation; // 要求された回転量[rad]
 };

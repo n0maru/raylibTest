@@ -154,6 +154,7 @@
     <ClInclude Include="Source\Input\KeyboardMouseInput.h" />
     <ClInclude Include="Source\Math\Capsule.h" />
     <ClInclude Include="Source\Math\ColorOperation.h" />
+    <ClInclude Include="Source\Math\CrtOperation.h" />
     <ClInclude Include="Source\Math\Sphere.h" />
     <ClInclude Include="Source\Math\Vector2Operation.h" />
     <ClInclude Include="Source\Math\Vector3Operation.h" />

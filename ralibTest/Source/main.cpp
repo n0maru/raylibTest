@@ -61,8 +61,9 @@ int main(void)
 				}
 
 				// todo: 値の範囲が分からない
-				const float yaw = input->GetRotateHorizontal() / 50.0f * PI;
-				player.Rotate(Vector3{ 0.0f, yaw, 0.0f });
+				const float pitch = -input->GetRotateVertical() / 100.0f * PI;
+				const float yaw = -input->GetRotateHorizontal() / 100.0f * PI;
+				camera.RequestRotate(Vector2{ pitch, yaw });
 			}
 		}
 

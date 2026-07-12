@@ -86,14 +86,6 @@ void Player::RequstJump()
 	m_isRequestedJump = true;
 }
 
-void Player::Rotate(Vector3 rotation)
-{
-	// todo: クォータニオンでやりたい？？
-	// todo: ジンバルロック
-	const Matrix mtx = ::MatrixRotateXYZ(rotation);
-	m_object.dir = m_object.dir * mtx;
-}
-
 void Player::_ResetRequest()
 {
 	m_requestMoveDirXZ = Vec2Op::Zero();
