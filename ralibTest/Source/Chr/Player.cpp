@@ -72,6 +72,18 @@ void Player::UpdatePrePysics(float dt)
 		m_physBody.acceleration += Vec2Op::XZToVec3(accelerationVec);
 
 		m_moveVelocityXZ += accelerationVec * dt; // Player 側で管理している移動速度にも加速度を反映する
+		// ::TraceLog(LOG_DEBUG, "%.2f", Vec2Op::Length(m_moveVelocityXZ));
+	}
+
+	// 描画用の向きを更新
+	{
+		// キャラの向きを体が移動中の方向に向ける
+		Vector3 dir = Vec2Op::XZToVec3(m_moveVelocityXZ);
+		if (dir == Vec3Op::Zero()) {
+			dir = m_object.dir; // ゼロベクトルなら前回の向きを利用する
+		}
+
+		SetDirection(dir);
 	}
 }
 
@@ -79,18 +91,6 @@ void Player::UpdatePostPhysics(float dt)
 {
 	// 物理世界上の位置をキャラの位置として反映する
 	m_object.pos = m_physBody.pos;
-
-
-	// 描画用の向きを更新
-	{
-		// キャラの向きを体が移動中の方向に向ける
-		Vector3 dir = m_physBody.velocity;
-		if (dir == Vec3Op::Zero()) {
-			dir = m_object.dir; // ゼロベクトルなら前回の向きを利用する
-		}
-
-		SetDirection(dir);
-	}
 
 	// 要求関連をリセット
 	_ResetRequest();
