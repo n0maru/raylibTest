@@ -55,6 +55,7 @@ public:
 	virtual void
 		UpdatePostPhysics(float dt);
 
+public:
 	PHYSICS_BODY&
 		GetPhysicsBody()
 	{
@@ -65,6 +66,12 @@ public:
 		GetPhysicsBody() const
 	{
 		return m_physBody;
+	}
+
+	void
+		SetDirection(const Vector3& dir)
+	{
+		m_object.dir = dir;
 	}
 public:
 	/// <summary>

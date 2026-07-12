@@ -18,6 +18,7 @@ public:
 		, m_doesMoveBack(false)
 		, m_doesMoveRight(false)
 		, m_doesMoveLeft(false)
+		, m_doesJump(false)
 		, m_mouseDelta{}
 	{
 	}

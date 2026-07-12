@@ -16,9 +16,7 @@ void Player::Init()
 
 	m_personModel.SetObject(&m_object); // m_object をモデルの描画位置として参照する
 	m_object.pos = m_physBody.pos;
-
-	// 向きの設定
-	m_object.dir = Vector3{ 1.0f, 0.0f, 0.0f };
+	m_object.dir = Vec3Op::WorldFront();
 
 	// 移動速度
 	m_moveVelocityXZ = Vec2Op::Zero();
@@ -43,8 +41,8 @@ void Player::UpdatePrePysics(float dt)
 
 	// 平面移動処理
 	{
-		static constexpr float maxSpeed = 30.0f * 1000.0f / 60.0f / 24.0f; // 30[km/h]
-		static constexpr float acceleration = maxSpeed / 0.5f; // 10[sec] で最高速度になるくらいの加速度
+		static constexpr float maxSpeed = 10.0f * 1000.0f / 60.0f / 24.0f; // 30[km/h]
+		static constexpr float acceleration = maxSpeed / 0.1f; // 10[sec] で最高速度になるくらいの加速度
 
 		Vector2 targetVelocity = Vec2Op::Zero(); // 目標速度
 		const float length = Vec2Op::Length(m_requestMoveDirXZ);
@@ -60,10 +58,32 @@ void Player::UpdatePrePysics(float dt)
 		// 移動速度が目標速度に近づくように加速度を加える
 		const Vector2 diffVec = targetVelocity - m_moveVelocityXZ;
 		const float diffLength = Vec2Op::Length(diffVec);
-		const Vector2 accelerationVec = diffVec * std::fmin(1.0f, acceleration / diffLength);
+
+		Vector2 accelerationVec = Vec2Op::Zero();
+		if (diffLength > 0.0f) {
+			// このフレームで与える加速度を計算する。
+			// 加速度を dt[sec] 分だけ足した結果、最高速度を超えないように 1/dt で抑える
+			accelerationVec = diffVec * std::fmin(1.0f / dt, acceleration / diffLength);
+		}
+		else {
+			accelerationVec = Vec2Op::Zero();
+		}
+
 		m_physBody.acceleration += Vec2Op::XZToVec3(accelerationVec);
 
 		m_moveVelocityXZ += accelerationVec * dt; // Player 側で管理している移動速度にも加速度を反映する
+		// ::TraceLog(LOG_DEBUG, "%.2f", Vec2Op::Length(m_moveVelocityXZ));
+	}
+
+	// 描画用の向きを更新
+	{
+		// キャラの向きを体が移動中の方向に向ける
+		Vector3 dir = Vec2Op::XZToVec3(m_moveVelocityXZ);
+		if (dir == Vec3Op::Zero()) {
+			dir = m_object.dir; // ゼロベクトルなら前回の向きを利用する
+		}
+
+		SetDirection(dir);
 	}
 }
 
