@@ -16,7 +16,7 @@ public:
 		WorldFront()
 	{
 		return Vector3{
-			0.0f, 0.0f, 1.0f
+			0.0f, 0.0f, -1.0f
 		};
 	}
 
@@ -62,6 +62,15 @@ public:
 		return Vector3{
 			src.x,
 			0.0f,
+			src.z
+		};
+	}
+
+	static Vector2
+		XZToVec2(const Vector3& src)
+	{
+		return Vector2{
+			src.x,
 			src.z
 		};
 	}
