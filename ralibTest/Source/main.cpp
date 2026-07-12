@@ -85,8 +85,6 @@ int main(void)
 			// カメラの更新
 			camera.Update(dt);
 		}
-		const auto pos = player.GetPos();
-		// ::TraceLog(LOG_DEBUG, "(%.2f, %.2f, %.2f)", pos.x, pos.y, pos.z);
 
 		// 描画
 		{
