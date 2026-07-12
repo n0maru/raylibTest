@@ -17,5 +17,10 @@ public:
 	/// 黒色
 	/// </summary>
 	static constexpr Color Black{ 0, 0, 0, 255 };
+
+	/// <summary>
+	/// 赤
+	/// </summary>
+	static constexpr Color Red{ 255, 0, 0, 255 };
 };
 using ColorOp = ColorOperation;

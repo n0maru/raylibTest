@@ -57,7 +57,7 @@ void PersonModel::Draw() const
 		};
 		const Vector3 endPos = startPos + Vec3Op::WorldFront() * headRadius * 2.0f;
 		const CAPSULE nose{ startPos * modelToWorldMtx, endPos * modelToWorldMtx, noseRadius };
-		Draw3D::DrawCapsule(nose, m_drawSplitNum, m_color);// 描画
+		Draw3D::DrawCapsule(nose, m_drawSplitNum, ColorOp::Red);// 描画
 	}
 
 }
