@@ -78,15 +78,6 @@ public:
 	/// ジャンプ要求
 	/// </summary>
 	void RequstJump();
-
-	// todo: request にする
-	/// <summary>
-	/// 回転
-	/// </summary>
-	/// <param name="rotation">回転量</param>
-	// todo: 回転量の単位が [rad/frame] になっているのを [rad/sec] にする
-	void Rotate(Vector3 rotation);
-
 private:
 	/// <summary>
 	/// 要求をリセットする。

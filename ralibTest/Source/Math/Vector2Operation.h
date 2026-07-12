@@ -61,5 +61,19 @@ public:
 			src.y
 		};
 	}
+
+	/// <summary>
+	/// 各要素を (-2π, 2π) に収める
+	/// </summary>
+	/// <param name="src"></param>
+	/// <returns></returns>
+	static Vector2
+		ModAngles(const Vector2& src)
+	{
+		return Vector2{
+			std::fmod(src.x, 2 * PI),
+			std::fmod(src.y, 2 * PI)
+		};
+	}
 };
 using Vec2Op = Vector2Operation;

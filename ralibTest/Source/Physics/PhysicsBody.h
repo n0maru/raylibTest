@@ -21,6 +21,7 @@ struct PHYSICS_BODY
 		TRAIT()
 			: gravityMagnification{ 1.0f, 1.0f, 1.0f }
 			, shape{ Vector3{-0.5f, -0.5f, -0.5f}, Vector3{0.5f, 0.5f, 0.5f} }
+			, frictionCoeff{ 0.0f }
 		{
 		}
 	};

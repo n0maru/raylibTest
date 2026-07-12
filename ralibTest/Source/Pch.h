@@ -11,5 +11,6 @@
 #include "Math/Vector2Operation.h"
 #include "Math/Vector3Operation.h"
 #include "Math/Line.h"
+#include "Math/CrtOperation.h"
 
 #include "Object/Object.h"
