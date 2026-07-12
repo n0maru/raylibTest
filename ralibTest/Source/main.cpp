@@ -50,11 +50,14 @@ int main(void)
 
 			// 入力の処理
 			{
-				const Vector2 translation{
-					static_cast<float>(input->DoesMoveFront()) - static_cast<float>(input->DoesMoveBack()),
-					static_cast<float>(input->DoesMoveRight()) - static_cast<float>(input->DoesMoveLeft()),
-				};
-				player.RequestMoveXZ(translation);
+				const Vector3 camDir = camera.CalcGetFrontDir(); // カメラの向き
+				// カメラ座標系上の移動方向
+				const Vector3 translationOnCameraCoord
+					= (input->DoesMoveRight() ? Vec3Op::WorldRight() : Vec3Op::Zero()) - (input->DoesMoveLeft() ? Vec3Op::WorldRight() : Vec3Op::Zero()) // 左右
+					+ (input->DoesMoveFront() ? Vec3Op::WorldFront() : Vec3Op::Zero()) - (input->DoesMoveBack() ? Vec3Op::WorldFront() : Vec3Op::Zero()); // 前後
+				// ワールド座標系上の移動方向
+				const Vector3 translationOnWorld = ::Vector3RotateByQuaternion(translationOnCameraCoord, ::QuaternionFromVector3ToVector3(Vec3Op::WorldFront(), camDir));
+				player.RequestMoveXZ(Vec3Op::XZToVec2(translationOnWorld));
 
 				// 着地中のみジャンプ可能
 				if (input->DoesJump()) {
@@ -82,12 +85,14 @@ int main(void)
 			// カメラの更新
 			camera.Update(dt);
 		}
+		const auto pos = player.GetPos();
+		// ::TraceLog(LOG_DEBUG, "(%.2f, %.2f, %.2f)", pos.x, pos.y, pos.z);
 
 		// 描画
 		{
 			BeginDrawing();
 			ClearBackground(RAYWHITE);
-			BeginMode3D(camera.GetCamera());
+			BeginMode3D(camera.GetRaylibCamera());
 
 			player.Draw();
 			map.Draw();
