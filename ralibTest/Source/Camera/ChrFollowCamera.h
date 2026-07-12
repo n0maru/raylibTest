@@ -13,7 +13,7 @@ public:
 	/// デフォルトコンストラクタ
 	/// </summary>
 	ChrFollowCamera()
-		: m_camera{}
+		: m_raylibCamera{}
 		, m_followee(nullptr)
 		, m_camRot(Vec2Op::Zero())
 
@@ -38,15 +38,23 @@ public:
 	}
 
 	/// <summary>
-	/// カメラ情報として取得する
+	/// カメラの正面ベクトルを取得する（単位ベクトルを返す）
 	/// </summary>
 	/// <returns></returns>
-	Camera
-		GetCamera() const
+	Vector3
+		CalcGetFrontDir() const;
+
+	/// <summary>
+	/// raylib 用カメラの参照
+	/// </summary>
+	/// <returns></returns>
+	const Camera&
+		GetRaylibCamera() const
 	{
-		return m_camera;
+		return m_raylibCamera;
 	}
 
+public:
 	/// <summary>
 	/// 内部状態の更新。
 	/// ここで更新を行ってから描画を行うこと
@@ -55,7 +63,12 @@ public:
 	void
 		Update(float dt);
 
-
+private:
+	/// <summary>
+	/// カメラ情報を元に raylib 用カメラの情報を更新する
+	/// </summary>
+	void
+		_UpdateRaylibCamera();
 public: // 要求
 	/// <summary>
 	/// カメラの回転を要求。
@@ -69,7 +82,7 @@ private:
 	void
 		_ResetRequest();
 public:
-	Camera m_camera;
+	Camera m_raylibCamera; // raylib 用カメラ
 	const Chr* m_followee; // ついていくキャラ
 	Vector2 m_camRot; // カメラ向き[rad]
 
