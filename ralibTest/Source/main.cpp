@@ -37,6 +37,7 @@ int main(void)
 
 	// 入力
 	Input* input = new KeyboardMouseInput();
+	::PollInputEvents();
 
 	while (!WindowShouldClose())
 	{
