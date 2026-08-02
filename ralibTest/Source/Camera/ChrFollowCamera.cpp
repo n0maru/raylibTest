@@ -26,7 +26,7 @@ void
 ChrFollowCamera::Update(float dt)
 {
 	if (!m_followee) {
-		::TraceLog(LOG_ERROR, "[ChrFollowCamera] Set Followee before call Update()");
+		ERROR_LOG("Set Followee before call Update()");
 		return;
 	}
 	m_camRot = Vec2Op::ModAngles(m_camRot + m_requestedRotation);

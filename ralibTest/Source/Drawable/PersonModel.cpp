@@ -9,7 +9,7 @@ void PersonModel::Draw() const
 
 	// ヌルチェック
 	if (!m_object) {
-		::TraceLog(LOG_ERROR, "a PersonModel must refer object before call Draw()");
+		ERROR_LOG("a PersonModel must refer object before call Draw()");
 		return;
 	}
 
