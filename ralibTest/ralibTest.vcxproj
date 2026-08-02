@@ -137,6 +137,9 @@
     <ClCompile Include="Source\Drawable\SquareMap.cpp" />
     <ClCompile Include="Source\Graphics\Draw3D.cpp" />
     <ClCompile Include="Source\Input\KeyboardMouseInput.cpp" />
+    <ClCompile Include="Source\Logger\FlipLogOutput.cpp" />
+    <ClCompile Include="Source\Logger\StringBuilder.cpp" />
+    <ClCompile Include="Source\Logger\SystemLogger.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Vector3Operation.cpp" />
     <ClCompile Include="Source\Physics\PhysicsCalculator.cpp" />
@@ -152,6 +155,9 @@
     <ClInclude Include="Source\Graphics\Draw3D.h" />
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Input\KeyboardMouseInput.h" />
+    <ClInclude Include="Source\Logger\FlipLogOutput.h" />
+    <ClInclude Include="Source\Logger\ILogOutput.h" />
+    <ClInclude Include="Source\Logger\SystemLogger.h" />
     <ClInclude Include="Source\Math\Capsule.h" />
     <ClInclude Include="Source\Math\ColorOperation.h" />
     <ClInclude Include="Source\Math\CrtOperation.h" />
@@ -165,6 +171,7 @@
     <ClInclude Include="Source\Physics\PhysicsWorld.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Source\Logger\StringBuilder.h" />
     <None Include="Source\Math\Line.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

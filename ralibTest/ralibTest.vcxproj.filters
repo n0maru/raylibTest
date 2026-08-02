@@ -37,6 +37,15 @@
     <ClCompile Include="Source\Math\Vector3Operation.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Logger\FlipLogOutput.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger\SystemLogger.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Logger\StringBuilder.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Drawable\Drawable.h" />
@@ -59,8 +68,12 @@
     <ClInclude Include="Source\Physics\PhysicsBody.h" />
     <ClInclude Include="Source\Math\Vector2Operation.h" />
     <ClInclude Include="Source\Math\CrtOperation.h" />
+    <ClInclude Include="Source\Logger\FlipLogOutput.h" />
+    <ClInclude Include="Source\Logger\SystemLogger.h" />
+    <ClInclude Include="Source\Logger\ILogOutput.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Math\Line.h" />
+    <None Include="Source\Logger\StringBuilder.h" />
   </ItemGroup>
 </Project>
