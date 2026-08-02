@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <raymath.h>
 #include <cmath>
-#include <cassert>
+#include "CrtOperation.h"
 
 class Vector2Operation
 {
@@ -63,7 +63,8 @@ public:
 	}
 
 	/// <summary>
-	/// 各要素を (-2π, 2π) に収める
+	/// 各要素を (-π, π) に収める
+	/// （＝内回りの回転にする）
 	/// </summary>
 	/// <param name="src"></param>
 	/// <returns></returns>
@@ -71,8 +72,8 @@ public:
 		ModAngles(const Vector2& src)
 	{
 		return Vector2{
-			std::fmod(src.x, 2 * PI),
-			std::fmod(src.y, 2 * PI)
+			CrtOp::ModAngles(src.x),
+			CrtOp::ModAngles(src.y),
 		};
 	}
 };

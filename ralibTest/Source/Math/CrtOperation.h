@@ -25,5 +25,15 @@ public:
 	{
 		return radian / PI * 180.0f;
 	}
+
+	/// <summary>
+	/// 角度を [-π, π] に変換して返す
+	/// </summary>
+	/// <param name="radian">ラジアン</param>
+	static float
+		ModAngles(float radian)
+	{
+		return radian - std::round(radian / (2.0f * PI));
+	}
 };
 using CrtOp = CrtOperation;
