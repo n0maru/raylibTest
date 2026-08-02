@@ -13,6 +13,14 @@ ILogOutput* SystemLogger::s_logOutput = nullptr;
 void
 SystemLogger::Print(const char* filePath, int line, int logLevel, const char* format, ...)
 {
+	va_list args;
+	va_start(args, format);
+	_Print(filePath, line, logLevel, format, args);
+	va_end(args);
+}
+
+void SystemLogger::_Print(const char* filePath, int line, int logLevel, const char* format, va_list args)
+{
 	if (!s_logOutput) {
 		return;
 	}
@@ -59,24 +67,18 @@ SystemLogger::Print(const char* filePath, int line, int logLevel, const char* fo
 
 	// 本体
 	{
-		char* begin = builder.GetBegin();
-		char* end = builder.GetEnd();
-
-		va_list args;
-		va_start(args, format);
 		const int expectedLength = std::vsnprintf(
-			begin,
-			end - begin,
+			log.text + builder.GetSize(),
+			builder.GetLeftSize(),
 			format,
 			args
 		);
-		va_end(args);
 
 #ifdef _DEBUG
 		assert(expectedLength >= 0);
 
 		// 文字数が足りていたかチェック
-		ASSERT_WARNING_LOG(expectedLength + 1 > end - begin, "log length shortage(expected:%d, limit:%d, in %s L.%d)", expectedLength, end - begin, filePath, line);
+		ASSERT_WARNING_LOG(expectedLength + 1 <= builder.GetLeftSize(), "log length shortage(expected:%d, limit:%d) in %s L.%d", expectedLength, builder.GetLeftSize(), filePath, line);
 #endif // _DEBUG
 	}
 

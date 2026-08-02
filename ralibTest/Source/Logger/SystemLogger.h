@@ -53,7 +53,7 @@ public:
 	static void
 		Print(int logLevel, const char* format, va_list args)
 	{
-		Print("Raylib", -1, logLevel, format, args);
+		_Print("Raylib", -1, logLevel, format, args);
 	}
 
 	/// <summary>
@@ -66,6 +66,18 @@ public:
 	/// <param name="">可変長引数</param>
 	static void
 		Print(const char* filePath, int line, int logLevel, const char* format, ...);
+
+private:
+	/// <summary>
+	/// ログを出力する（タイトル用）
+	/// </summary>
+	/// <param name="filePath">出力元ファイルパス</param>
+	/// <param name="line">行数</param>
+	/// <param name="logLevel">ログレベル</param>
+	/// <param name="format">フォーマット文字列(%s, %d などを含む)</param>
+	/// <param name="args">可変長引数</param>
+	static void
+		_Print(const char* filePath, int line, int logLevel, const char* format, va_list args);
 
 private:
 	/// <summary>
