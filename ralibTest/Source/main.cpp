@@ -1,22 +1,31 @@
 ﻿#include <raylib.h>
+#include <fstream>
 #include "Chr/Player.h"
 #include "Input/KeyboardMouseInput.h"
 #include "Drawable/SquareMap.h"
 #include "Camera/ChrFollowCamera.h"
 #include "Physics/PhysicsWorld.h"
+#include "Logger/FlipLogOutput.h"
 
 int main(void)
 {
+	// ログ関連の設定
+	static const char* logFilePath = "./Log.txt";
+	FlipLogOutput logOutput(logFilePath);
+	{
+		SystemLogger::Initialize();
+		SystemLogger::SetLogOutput(&logOutput);
+		{
+			std::ofstream out(logFilePath);
+			out.close();
+		}
+	}
 	// ウィンドウ初期化
 	{
 		const int screenWidth = 800;
 		const int screenHeight = 450;
 		InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 		SetTargetFPS(60);
-	}
-	// ログ関連の設定
-	{
-		::SetTraceLogLevel(LOG_ALL);
 	}
 
 	// ワールド
@@ -97,6 +106,10 @@ int main(void)
 
 			EndMode3D();
 			EndDrawing();
+		}
+
+		{
+			logOutput.Update();
 		}
 	}
 
