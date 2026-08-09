@@ -36,6 +36,8 @@
 #define ERROR_LOG(text, ...) SystemLogger::Print(std::filesystem::path(__FILE__).filename().string().c_str(), __LINE__, LOG_ERROR, text, __VA_ARGS__)
 #define FATAL_LOG(text, ...) SystemLogger::Print(std::filesystem::path(__FILE__).filename().string().c_str(), __LINE__, LOG_FATAL, text, __VA_ARGS__)
 
+#define VEC3_LOG(vec) DEBUG_LOG("%s: (%.3f,%.3f,%.3f)", #vec, vec.x, vec.y, vec.z);
+
 // アサート
 #define ASSERT_TRACE_LOG(condition, text, ...) if (!(condition)) { TRACE_LOG(text, __VA_ARGS__); }
 #define ASSERT_DEBUG_LOG(condition, text, ...) if (!(condition)) { DEBUG_LOG(text, __VA_ARGS__); }
