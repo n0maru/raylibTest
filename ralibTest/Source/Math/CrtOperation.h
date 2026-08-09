@@ -33,7 +33,7 @@ public:
 	static float
 		ModAngles(float radian)
 	{
-		return radian - std::round(radian / (2.0f * PI));
+		return radian - std::round(radian / (2.0f * PI)) * 2.0f * PI;
 	}
 };
 using CrtOp = CrtOperation;
