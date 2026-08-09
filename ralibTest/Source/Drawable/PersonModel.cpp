@@ -16,7 +16,10 @@ void PersonModel::Draw() const
 	const float headRadius = m_height * headRate / 2.0f; // 頭の半径
 
 	// モデル空間 -> ワールド空間 変換行列
-	const Quaternion rotation = ::QuaternionFromVector3ToVector3(Vec3Op::WorldFront(), Vec3Op::XZ(m_object->dir)); // 向きの平面成分だけを使う
+	// VEC3_LOG(m_object->dir);
+	const float yaw = Vec3Op::GetYaw(m_object->dir);
+	// DEBUG_LOG("yaw: %.3f(%.3f)", yaw, CrtOp::RadToDeg(yaw));
+	const Quaternion rotation = ::QuaternionFromEuler(0.0f, yaw, 0.0f); // 向きの平面成分だけを使う
 	const Matrix modelToWorldMtx = ::MatrixCompose(m_object->pos, rotation, Vector3{ 1.0f, 1.0f, 1.0f });
 
 	// 頭

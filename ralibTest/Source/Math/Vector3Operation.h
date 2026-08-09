@@ -74,6 +74,45 @@ public:
 			src.z
 		};
 	}
+
+	/// <summary>
+	/// ピッチ（X軸回転量）を求める
+	/// </summary>
+	/// <param name="src"></param>
+	/// <returns>
+	/// [-π/2, π/2] で求める。
+	/// ゼロベクトルの際の返り値は未定義動作。
+	/// </returns>
+	static float
+		GetPitch(const Vector3& src)
+	{
+		const float xzLength = std::hypot(src.x, src.z);
+
+		// 
+		return -std::atan2(src.y, xzLength);
+	}
+
+	/// <summary>
+	/// ヨー（Y軸回転量）を求める
+	/// </summary>
+	/// <param name="src"></param>
+	/// <returns>
+	/// [-π, π] で求める。
+	/// ゼロベクトルの際の返り値は未定義動作。
+	/// </returns>
+	static float
+		GetYaw(const Vector3& src)
+	{
+		return std::atan2(-src.x, -src.z);
+	}
+
+	static Vector2
+		GetPitchYaw(const Vector3& src) {
+		return Vector2{
+			GetPitch(src),
+			GetYaw(src)
+		};
+	}
 };
 using Vec3Op = Vector3Operation;
 
